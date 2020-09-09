@@ -42,11 +42,6 @@ form{
   display: block;
   margin-top: 4rem;
 }
-@media screen and (max-width: 900px) {
-  .form{
-    margin: 0 15px;
-  }
-}
 .input{
   width: 100%;
   height: 60px;
@@ -63,22 +58,29 @@ form{
   margin: auto;
   display: block;
   margin-top: 2rem;
-  background: #D8ACFF;
+  background-color: #734B97;
   border-radius: 100px;
   height: 50px;
-  border: none;
+  border: 4px solid #D8ACFF;
   outline: none;
   font-weight: bold;
   font-family: 'Poppins', sans-serif !important;
   width: 150px;
   color: #fff;
   font-size: 1.25rem;
-  box-shadow: 0px 4px 10px 2px rgba(216, 172, 255, 0.2);
 }
 ::placeholder{
   font-weight: 500;
   font-size: 1.25rem;
   color: #ffffff;
   font-family: 'Poppins', sans-serif !important;
+}
+@media screen and (max-width: 900px) {
+  .form{
+    margin: 0 15px;
+  }
+  .center{
+    margin: 0 20px;
+  }
 }
 </style>
