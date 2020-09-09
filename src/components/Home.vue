@@ -4,22 +4,88 @@
     <p class="center header"><b>Lrnk</b>ify</p>
     <p class="center sub">Get links shortened fast & easy</p>
     </div>
-    <div class="form">
-      <form action="">
-        <input class="input" type="text" name="link" id="link" placeholder="Input Link" required>
+    <div class="form" :class="{ md: er }">
+      <form method="post" @submit.prevent="trimUrl">
+        <input class="input" type="text" name="link" id="link" placeholder="https://link.domain" v-model="url" required>
         <button class="short">Shorten!</button>
       </form>
     </div>
-    <div class="box">
+    <div class="box" v-if="isReady">
       <div class="link">Link</div>
-      <a class="lrnk" href="">https://lrnk.ify/3443</a>
+      <a :href="linkUrl"  target="_blank" class="lrnk">{{ linkUrl }}</a>
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  name: 'Home'
+  name: 'Home',
+
+  data() {
+        return {
+            url: '',
+            linkUrl: '',
+            parsedUrl: '',
+            urlLink: '',
+            mainUrl: '',
+            isLoading: false,
+            isReady: false,
+            error: false,
+            er: false,
+            errorMessage: '',
+            copied: '',
+            links: [],
+            copyText: 'Copy',
+            isActive: false
+        }
+    },
+    methods: {
+        trimUrl() {
+          if (this.url == "") {
+            this.er = true;
+              setTimeout(()=> {
+                this.er = false;
+            }, 2500)
+              } else {
+              this.er = false;
+             }
+             
+            this.isLoading = true;
+            this.isReady = false;
+            this.$http.post('https://rel.ink/api/links/', {"url": this.url})
+            .then(res=> {
+                this.isLoading = false;
+                this.isReady = true;
+                this.linkUrl = `https://rel.ink/${res.body.hashid}`;
+                this.mainUrl = `${res.data.url}`;
+                localStorage.setItem("links", JSON.stringify(this.links));
+                let data = {
+                  parsedUrl : `https://rel.ink/${res.body.hashid}`,
+                  urlLink: `${res.data.url}`
+                };
+                this.links.unshift(data);
+            })
+            .catch(err => {
+                this.errorMessage = err;
+                this.error = true;
+                console.log(err)
+            })
+        },
+        onCopy() {
+            this.copied = true;
+            this.isActive = !this.isActive
+            setTimeout(()=> {
+                this.copied = false;
+                this.isActive = !this.isActive
+            }, 2500)
+        },
+        getLinks() {       
+            if (localStorage.getItem('links')) this.links = JSON.parse(localStorage.getItem('links'));
+        }
+    },
+    mounted() {
+        this.getLinks();
+}
 }
 </script>
 
@@ -65,7 +131,7 @@ form{
   background-color: #734B97;
   border-radius: 100px;
   height: 50px;
-  border: 4px solid #D8ACFF;
+  border: 2px solid #D8ACFF;
   outline: none;
   font-weight: bold;
   font-family: 'Poppins', sans-serif !important;
@@ -104,6 +170,10 @@ form{
 .lrnk{
   font-weight: 600;
   color: #734B97;
+}
+.short:focus, .short:hover{
+  border: 4px solid #D8ACFF;
+  cursor: pointer;
 }
 @media (min-width: 320px) and (max-width: 500px){
   .form{
