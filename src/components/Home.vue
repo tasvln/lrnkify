@@ -105,7 +105,7 @@ form{
   font-weight: 600;
   color: #734B97;
 }
-@media screen and (max-width: 900px) {
+@media (min-width: 320px) and (max-width: 500px){
   .form{
     margin: 0 15px;
   }
@@ -114,6 +114,7 @@ form{
   }
   .box{
     margin: 0 20px;
+    margin-top: 3rem;
   }
 }
 </style>
