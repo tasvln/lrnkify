@@ -22,7 +22,7 @@ export default {
 }
 body{
   background-color: #734B97 !important;
-  background: url('/src/assets/background.svg');
+  background: url(https://res.cloudinary.com/dudhmrdin/image/upload/v1599663133/MacBook_Pro_-_3_sqdxae.svg);
   font-family: 'Poppins', sans-serif !important;
   scroll-behavior: smooth;
 }
