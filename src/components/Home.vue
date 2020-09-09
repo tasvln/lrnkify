@@ -6,7 +6,8 @@
     </div>
     <div class="form">
       <form action="">
-        <input type="text" name="link" id="link" placeholder="Input Link">
+        <input class="input" type="text" name="link" id="link" placeholder="Input Link" required>
+        <input type="submit" class="short" value="Shorten!">
       </form>
     </div>
   </div>
@@ -46,12 +47,38 @@ form{
     margin: 0 15px;
   }
 }
-input{
+.input{
   width: 100%;
   height: 60px;
   border-radius: 20px;
+  font-size: 1.25rem;
+  color: #fff;
+  font-weight: 500;
   border: none;
+  background: rgba(255, 255, 255, 0.5);
   text-align: center;
   outline: none;
+}
+.short{
+  margin: auto;
+  display: block;
+  margin-top: 2rem;
+  background: #D8ACFF;
+  border-radius: 100px;
+  height: 50px;
+  border: none;
+  outline: none;
+  font-weight: bold;
+  font-family: 'Poppins', sans-serif !important;
+  width: 150px;
+  color: #fff;
+  font-size: 1.25rem;
+  box-shadow: 0px 4px 10px 2px rgba(216, 172, 255, 0.2);
+}
+::placeholder{
+  font-weight: 500;
+  font-size: 1.25rem;
+  color: #ffffff;
+  font-family: 'Poppins', sans-serif !important;
 }
 </style>
