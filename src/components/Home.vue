@@ -7,8 +7,12 @@
     <div class="form">
       <form action="">
         <input class="input" type="text" name="link" id="link" placeholder="Input Link" required>
-        <input type="submit" class="short" value="Shorten!">
+        <button class="short">Shorten!</button>
       </form>
+    </div>
+    <div class="box">
+      <div class="link">Link</div>
+      <a class="lrnk" href="">https://lrnk.ify/3443</a>
     </div>
   </div>
 </template>
@@ -75,11 +79,40 @@ form{
   color: #ffffff;
   font-family: 'Poppins', sans-serif !important;
 }
+.box{
+  max-width: 400px;
+  margin: auto;
+  display: block;
+  margin-top: 4rem;
+  background-color: #D8ACFF;
+  border-radius: 1000px;
+  padding: 20px 40px;
+  text-align: center;
+}
+.link{
+  padding: 4px 5px;
+  background-color: #fff;
+  max-width: 80px;
+  margin: auto;
+  display: block;
+  font-weight: bold;
+  border-radius: 100px;
+  color: #734B97;
+  font-family: 'Poppins', sans-serif !important;
+  margin-bottom: 1.5rem;
+}
+.lrnk{
+  font-weight: 600;
+  color: #734B97;
+}
 @media screen and (max-width: 900px) {
   .form{
     margin: 0 15px;
   }
   .center{
+    margin: 0 20px;
+  }
+  .box{
     margin: 0 20px;
   }
 }
