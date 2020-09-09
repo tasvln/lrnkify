@@ -22,7 +22,7 @@ export default {
 }
 body{
   background-color: #734B97 !important;
-  background: url('/assets/background.svg');
+  background: url('/src/assets/background.svg');
   font-family: 'Poppins', sans-serif !important;
   scroll-behavior: smooth;
 }
