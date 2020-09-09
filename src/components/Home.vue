@@ -115,6 +115,7 @@ form{
   .box{
     margin: 0 20px;
     margin-top: 3rem;
+    margin-bottom: 4rem;
   }
 }
 </style>
