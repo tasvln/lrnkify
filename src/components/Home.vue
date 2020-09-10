@@ -4,7 +4,7 @@
     <p class="center header"><b>Lrnk</b>ify</p>
     <p class="center sub">Get links shortened fast & easy</p>
     </div>
-    <div class="form" :class="{ md: er }">
+    <div class="form">
       <form method="post" @submit.prevent="trimUrl">
         <input class="input" type="text" name="link" id="link" placeholder="https://link.domain" v-model="url" required>
         <button class="short">Shorten!</button>
@@ -23,38 +23,19 @@ export default {
 
   data() {
         return {
-            url: '',
-            linkUrl: '',
-            parsedUrl: '',
-            urlLink: '',
-            mainUrl: '',
-            isLoading: false,
-            isReady: false,
-            error: false,
-            er: false,
-            errorMessage: '',
-            copied: '',
-            links: [],
-            copyText: 'Copy',
-            isActive: false
+          url: '',
+          isReady: false,
+          linkUrl: '',
         }
     },
     methods: {
-        trimUrl() {
+      trimUrl() {
           if (this.url == "") {
             this.er = true;
-              setTimeout(()=> {
-                this.er = false;
-            }, 2500)
-              } else {
-              this.er = false;
-             }
-             
-            this.isLoading = true;
+          }
             this.isReady = false;
             this.$http.post('https://rel.ink/api/links/', {"url": this.url})
             .then(res=> {
-                this.isLoading = false;
                 this.isReady = true;
                 this.linkUrl = `https://rel.ink/${res.body.hashid}`;
                 this.mainUrl = `${res.data.url}`;
@@ -65,19 +46,6 @@ export default {
                 };
                 this.links.unshift(data);
             })
-            .catch(err => {
-                this.errorMessage = err;
-                this.error = true;
-                console.log(err)
-            })
-        },
-        onCopy() {
-            this.copied = true;
-            this.isActive = !this.isActive
-            setTimeout(()=> {
-                this.copied = false;
-                this.isActive = !this.isActive
-            }, 2500)
         },
         getLinks() {       
             if (localStorage.getItem('links')) this.links = JSON.parse(localStorage.getItem('links'));
