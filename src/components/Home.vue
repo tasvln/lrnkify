@@ -6,7 +6,7 @@
     </div>
     <div class="form">
       <form method="post" @submit.prevent="trimUrl">
-        <input class="input" type="url" name="url" id="url"  placeholder="https://link.domain" v-model="url" required>
+        <input class="input" type="url" name="url" id="url" value="https://" v-model="url" required>
         <button class="short">Shorten!</button>
       </form>
     </div>
